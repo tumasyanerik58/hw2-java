@@ -2,9 +2,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 public class SimpleTest {
     private static WebDriver driver;
@@ -27,9 +25,13 @@ public class SimpleTest {
         System.setProperty(driverProperty,driverPath);
         driver = new ChromeDriver();
         driver.get(url_main);
+        return driver;
+    }
 
-    return driver;
-}
+    @BeforeMethod
+    public void refresh(){
+        driver.get(url_main);
+    }
 
     @Test
     public void goToFormAuth(){
